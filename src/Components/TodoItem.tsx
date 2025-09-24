@@ -1,10 +1,12 @@
+import { Trash2 } from "lucide-react";
 import type { Todo } from "../Types/todo";
+
 
 interface TodoItemProps {
   todo: Todo;
   onToggle: () => void;
   onDelete: () => void;
-  className?: string
+  className?: string;
 }
 
 export default function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
@@ -15,7 +17,11 @@ export default function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
           type="checkbox"
           checked={todo.completed}
           onChange={onToggle}
-          className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-400"
+          className="h-5 w-5 cursor-pointer appearance-none rounded-md border 
+             border-gray-400 dark:border-gray-600 
+             checked:bg-white checked:border-white
+             transition-all duration-300
+             focus:outline-none focus:ring-2 focus:ring-white"
         />
         <span
           className={`text-gray-800 dark:text-gray-100 transition-all duration-300 ${
@@ -27,11 +33,11 @@ export default function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
           {todo.text}
         </span>
       </div>
-      <button
+       <button
         onClick={onDelete}
-        className="text-red-500 hover:text-red-700 font-medium"
+        className="text-red-500 hover:text-red-700 p-1 rounded-md transition-colors"
       >
-        Eliminar
+        <Trash2 size={20} />
       </button>
     </li>
   );
