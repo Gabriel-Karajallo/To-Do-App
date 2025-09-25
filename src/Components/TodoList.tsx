@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion"
 import TodoItem from "./TodoItem";
 import type { Todo } from "../Types/todo";
 
@@ -21,15 +22,23 @@ export default function TodoList({
       ) : (
         <div className="max-h-96 overflow-y-auto pr-1">
           <ul className="space-y-2">
-            {todos.map((todo) => (
-              <TodoItem
-                key={todo.id}
-                todo={todo}
-                onToggle={() => onToggleTodo(todo.id)}
-                onDelete={() => onDeleteTodo(todo.id)}
-                className="transform transition-all duration-300 ease-in-out"
-              />
-            ))}
+            <AnimatePresence>
+              {todos.map((todo) => (
+                <motion.li
+                  key={todo.id}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, x: 50 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <TodoItem
+                    todo={todo}
+                    onToggle={() => onToggleTodo(todo.id)}
+                    onDelete={() => onDeleteTodo(todo.id)}
+                  />
+                </motion.li>
+              ))}
+            </AnimatePresence>
           </ul>
         </div>
       )}
