@@ -4,6 +4,8 @@ import TodoList from "./Components/TodoList"
 import type { Todo } from "./Types/todo"
 import "./Styles/index.css"
 import "./Styles/app.css"
+import FilterSegment from "./Components/FilterSegment";
+
 
 export default function App() {
   const [todos, setTodos] = useState<Todo[]>(() => {
@@ -57,38 +59,7 @@ export default function App() {
         <TodoForm onAddTodo={addTodo} />
 
         {/* Filtros */}
-        <div className="flex justify-center gap-3">
-          <button
-            onClick={() => setFilter("all")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-              filter === "all"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 dark:bg-neutral-700 dark:text-gray-300 text-gray-600"
-            }`}
-          >
-            Todas
-          </button>
-          <button
-            onClick={() => setFilter("completed")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-              filter === "completed"
-                ? "bg-green-500 text-white"
-                : "bg-gray-200 dark:bg-neutral-700 dark:text-gray-300 text-gray-600"
-            }`}
-          >
-            Completadas
-          </button>
-          <button
-            onClick={() => setFilter("pending")}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-              filter === "pending"
-                ? "bg-yellow-500 text-white"
-                : "bg-gray-200 dark:bg-neutral-700 dark:text-gray-300 text-gray-600"
-            }`}
-          >
-            Pendientes
-          </button>
-        </div>
+        <FilterSegment filter={filter} setFilter={setFilter} />
 
         {/* Lista */}
         <TodoList
