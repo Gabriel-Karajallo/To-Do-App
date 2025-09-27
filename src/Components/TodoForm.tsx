@@ -29,7 +29,7 @@ export default function TodoForm({ onAddTodo }: TodoFormProps) {
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Escribe una tarea..."
+        placeholder="Ej: Hacer la compra..."
         className="flex-1 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-2 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 
                focus:outline-none focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-400 transition-all duration-300 shadow-sm"
       />

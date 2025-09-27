@@ -49,10 +49,10 @@ export default function App() {
   }, [todos])
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-neutral-900 flex items-center justify-center px-4">
-      <div className="w-full max-w-xl bg-white dark:bg-neutral-800 shadow-lg rounded-2xl p-9 space-y-6">
+    <div className="min-h-screen bg-gray-100 dark:bg-neutral-900 flex flex-col items-center justify-center px-4">
+      <div className="w-full max-w-3xl bg-white dark:bg-neutral-800 shadow-lg rounded-2xl p-9 space-y-6">
         <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white mt-5">
-          To-Do App
+          ¿Qué hay que hacer hoy?
         </h1>
 
         {/* Formulario */}
@@ -69,6 +69,10 @@ export default function App() {
           setTodos={setTodos}
         />
       </div>
+      {/* Footer fuera del contenedor principal */}
+      <footer className="w-full py-6 text-center text-xs text-gray-400 dark:text-gray-500">
+        © 2025 Gabriel Karajallo. Todos los derechos reservados.
+      </footer>
     </div>
   )
 }

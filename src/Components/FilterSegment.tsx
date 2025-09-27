@@ -16,7 +16,7 @@ export default function FilterSegment({ filter, setFilter }: FilterSegmentProps)
   ];
 
   return (
-    <div className="flex bg-gray-200 dark:bg-neutral-700 rounded-xl p-1 w-max mx-auto">
+    <div className="flex gap-x-2 bg-gray-200 dark:bg-neutral-700 rounded-xl p-1 w-max mx-auto">
       {segments.map((seg) => (
         <button
           key={seg.value}

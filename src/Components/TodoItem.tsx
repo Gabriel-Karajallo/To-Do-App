@@ -65,7 +65,6 @@ export default function TodoItem({
       type="text"
       value={editText}
       onChange={(e) => setEditText(e.target.value)}
-      onBlur={handleSave} // guarda al perder foco (móvil)
       onKeyDown={(e) => {
         if (e.key === "Enter") handleSave();
         if (e.key === "Escape") handleCancel();

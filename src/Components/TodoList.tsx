@@ -1,4 +1,4 @@
-import { Inbox } from "lucide-react"; // icono Lucide para “sin tareas”
+import { NotepadText } from "lucide-react"; // icono Lucide para “sin tareas”
 import { AnimatePresence, Reorder } from "framer-motion";
 import TodoItem from "./TodoItem";
 import type { Todo } from "../Types/todo";
@@ -26,7 +26,7 @@ export default function TodoList({ todos, onToggleTodo, onDeleteTodo, setTodos }
     <div className="w-full">
       {todos.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-[450px] text-gray-400 dark:text-gray-500">
-          <Inbox size={60} className="mb-4 animate-bounce text-gray-300 dark:text-gray-600" />
+          <NotepadText size={60} className="mb-4 animate-bounce text-gray-300 dark:text-gray-600" />
           <p className="text-center text-lg italic">¡Aún no hay tareas!</p>
         </div>
       ) : (
