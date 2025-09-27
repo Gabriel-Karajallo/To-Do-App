@@ -1,52 +1,58 @@
-import { useState, useEffect } from "react"
-import TodoForm from "./Components/TodoForm"
-import TodoList from "./Components/TodoList"
-import type { Todo } from "./Types/todo"
-import "./Styles/index.css"
-import "./Styles/app.css"
-import FilterSegment from "./Components/FilterSegment";
-
+import { useState, useEffect } from "react";
+import TodoForm from "./Components/TodoForm";
+import TodoList from "./Components/TodoList";
+import type { Todo } from "./Types/todo";
+import "./Styles/index.css";
+import "./Styles/app.css";
+import FilterBar from "./Components/FilterBar";
 
 export default function App() {
   const [todos, setTodos] = useState<Todo[]>(() => {
-    const savedTodos = localStorage.getItem("todos")
-    return savedTodos ? JSON.parse(savedTodos) : []
-  })
-  const [filter, setFilter] = useState<Filter>("all")
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
+  const [filter, setFilter] = useState<Filter>("all");
 
   const addTodo = (text: string) => {
     const newTodo: Todo = {
       id: Date.now(),
       text,
       completed: false,
-    }
-    setTodos([...todos, newTodo])
-  }
+    };
+    setTodos([...todos, newTodo]);
+  };
 
   const toggleTodo = (id: number) => {
     setTodos(
       todos.map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
-    )
-  }
+    );
+  };
 
   const deleteTodo = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id))
-  }
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
 
-  type Filter = "all" | "completed" | "pending"
+  type Filter = "all" | "completed" | "pending";
 
   const filteredTodos = todos.filter((todo) => {
-    if (filter === "all") return true
-    if (filter === "completed") return todo.completed
-    if (filter === "pending") return !todo.completed
-    return true
-  })
+    if (filter === "all") return true;
+    if (filter === "completed") return todo.completed;
+    if (filter === "pending") return !todo.completed;
+    return true;
+  });
+
+  const handleClearCompleted = () => {
+  setTodos((prevTodos) => prevTodos.filter((todo) => !todo.completed));
+};
+  const handleClearAll = () => {
+    setTodos([]);
+  };
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos))
-  }, [todos])
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-neutral-900 flex flex-col items-center justify-center px-4">
@@ -59,7 +65,15 @@ export default function App() {
         <TodoForm onAddTodo={addTodo} />
 
         {/* Filtros */}
-        <FilterSegment filter={filter} setFilter={setFilter} />
+        <FilterBar
+          filter={filter}
+          setFilter={setFilter}
+          onClearCompleted={handleClearCompleted}
+          onClearAll={handleClearAll}
+          total={todos.length}
+          completed={todos.filter(t => t.completed).length}
+          pending={todos.filter(t => !t.completed).length}
+        />
 
         {/* Lista */}
         <TodoList
@@ -74,5 +88,5 @@ export default function App() {
         © 2025 Gabriel Karajallo. Todos los derechos reservados.
       </footer>
     </div>
-  )
+  );
 }
