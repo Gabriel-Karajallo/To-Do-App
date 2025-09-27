@@ -1,55 +1,62 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { Inbox } from "lucide-react"; // icono Lucide para “sin tareas”
+import { AnimatePresence, Reorder } from "framer-motion";
 import TodoItem from "./TodoItem";
 import type { Todo } from "../Types/todo";
-
 
 interface TodoListProps {
   todos: Todo[];
   onToggleTodo: (id: number) => void;
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   onDeleteTodo: (id: number) => void;
 }
 
-export default function TodoList({
-  todos,
-  onToggleTodo,
-  onDeleteTodo,
-}: TodoListProps) {
+export default function TodoList({ todos, onToggleTodo, onDeleteTodo, setTodos }: TodoListProps) {
   const containerHeight = "min-h-[450px] max-h-[450px]";
+
+  // Función para editar el texto de una tarea
+  const onEditTodo = (id: number, newText: string) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, text: newText } : todo
+      )
+    );
+  };
+
   return (
     <div className="w-full">
-      <div
-        className={`overflow-y-auto overflow-x-hidden pr-1 w-full ${containerHeight}`}
-      >
       {todos.length === 0 ? (
-        <div className="flex items-center justify-center h-full">
-          <p className="text-gray-500 italic text-center dark:text-gray-400">
-            Aún no hay tareas. ¡Añade una!
-          </p>
+        <div className="flex flex-col items-center justify-center h-[450px] text-gray-400 dark:text-gray-500">
+          <Inbox size={60} className="mb-4 animate-bounce text-gray-300 dark:text-gray-600" />
+          <p className="text-center text-lg italic">¡Aún no hay tareas!</p>
         </div>
       ) : (
-        <div className="min-h-[450px] max-h-[450px] overflow-y-auto overflow-x-hidden pr-1 w-full">
-          <ul className="space-y-2">
-            <AnimatePresence>
-              {todos.map((todo) => (
-                <motion.li
-                  key={todo.id}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, x: 50 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <TodoItem
-                    todo={todo}
-                    onToggle={() => onToggleTodo(todo.id)}
-                    onDelete={() => onDeleteTodo(todo.id)}
-                  />
-                </motion.li>
-              ))}
-            </AnimatePresence>
-          </ul>
-        </div>
+        <Reorder.Group
+          axis="y"
+          values={todos}
+          onReorder={setTodos}
+          className={`overflow-y-auto overflow-x-hidden pr-1 w-full ${containerHeight} space-y-2`}
+        >
+          <AnimatePresence>
+            {todos.map((todo) => (
+              <Reorder.Item
+                key={todo.id}
+                value={todo}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, x: 50 }}
+                transition={{ duration: 0.25 }}
+              >
+                <TodoItem
+                  todo={todo}
+                  onToggle={() => onToggleTodo(todo.id)}
+                  onDelete={() => onDeleteTodo(todo.id)}
+                  onEdit={(newText) => onEditTodo(todo.id, newText)}
+                />
+              </Reorder.Item>
+            ))}
+          </AnimatePresence>
+        </Reorder.Group>
       )}
-    </div>
     </div>
   );
 }

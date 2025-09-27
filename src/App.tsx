@@ -50,8 +50,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-neutral-900 flex items-center justify-center px-4">
-      <div className="w-full max-w-xl bg-white dark:bg-neutral-800 shadow-lg rounded-2xl p-6 space-y-6">
-        <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white">
+      <div className="w-full max-w-xl bg-white dark:bg-neutral-800 shadow-lg rounded-2xl p-9 space-y-6">
+        <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white mt-5">
           To-Do App
         </h1>
 
@@ -66,6 +66,7 @@ export default function App() {
           todos={filteredTodos}
           onToggleTodo={toggleTodo}
           onDeleteTodo={deleteTodo}
+          setTodos={setTodos}
         />
       </div>
     </div>
