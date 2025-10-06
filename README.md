@@ -5,7 +5,7 @@ Este proyecto fue creado con el objetivo de **aprender, practicar y divertirme p
 
 ---
 
-## ✨ Funcionalidades principales  
+## Funcionalidades principales  
 
 ✅ **Añadir tareas** en segundos  
 📌 **Marcar como completadas**  
@@ -16,7 +16,7 @@ Este proyecto fue creado con el objetivo de **aprender, practicar y divertirme p
 
 ---
 
-## 🛠️ Tecnologías utilizadas  
+## Tecnologías utilizadas  
 
 - ⚛️ **React** → construcción de la interfaz  
 - 🎨 **Tailwind CSS** → estilos rápidos y bonitos  
@@ -25,7 +25,7 @@ Este proyecto fue creado con el objetivo de **aprender, practicar y divertirme p
 
 ---
 
-## 🚀 Cómo probarlo en tu máquina
+## Cómo probarlo en tu máquina
 - 1️⃣ Clona este repositorio: 
 git clone https://github.com/tuusuario/to-do-app.git++
 - 2️⃣ Instala las dependencias: 
@@ -35,11 +35,11 @@ npm run dev
 - 4️⃣ Abre en tu navegador 🌍
 http://localhost:5173
 
-## 🚧 Posibles mejoras futuras
+## Posibles mejoras futuras
 - 📱 Versión en React Native para móvil
 - 🔒 Autenticación con login/registro
 - 📊 Un dashboard de productividad
 - ☁️ Guardar datos en la nube
 
-### 👨‍💻 Autor
+### Autor
 - Gabriel Karajallo 💙
