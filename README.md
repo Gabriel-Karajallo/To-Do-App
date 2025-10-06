@@ -35,11 +35,5 @@ npm run dev
 - 4️⃣ Abre en tu navegador 🌍
 http://localhost:5173
 
-## Posibles mejoras futuras
-- 📱 Versión en React Native para móvil
-- 🔒 Autenticación con login/registro
-- 📊 Un dashboard de productividad
-- ☁️ Guardar datos en la nube
-
 ### Autor
 - Gabriel Karajallo 💙
