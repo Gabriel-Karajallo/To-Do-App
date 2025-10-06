@@ -1,4 +1,4 @@
-# 🚀 To-Do App  
+# To-Do App  
 
 Una **aplicación de productividad minimalista** para gestionar tus tareas del día a día.  
 Este proyecto fue creado con el objetivo de **aprender, practicar y divertirme programando**.  
